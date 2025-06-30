@@ -3,8 +3,14 @@ local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 
+-- Prevent duplicate GUI
+if player:FindFirstChild("PlayerGui"):FindFirstChild("JJLoadingGui") then
+    return
+end
+
 -- Create ScreenGui
 local gui = Instance.new("ScreenGui")
+gui.Name = "JJLoadingGui" -- unique name for detection
 gui.IgnoreGuiInset = true
 gui.ResetOnSpawn = false
 gui.DisplayOrder = 9999 -- GUI overlaps others
@@ -43,7 +49,7 @@ mainContainer.BackgroundTransparency = 1
 local uiScale = Instance.new("UIScale", mainContainer)
 uiScale.Scale = 1
 
--- Title text settings (no curve, just one TextLabel)
+-- Title (flat bubbly font)
 local titleContainer = Instance.new("Frame", mainContainer)
 titleContainer.Size = UDim2.new(1, 0, 0.07, 0)
 titleContainer.Position = UDim2.new(0, 0, 0.25, 0)
